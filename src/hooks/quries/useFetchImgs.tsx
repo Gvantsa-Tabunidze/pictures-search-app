@@ -2,14 +2,22 @@
 
 import fetchImages from "@/api/fetchImages"
 import { unsplashImage } from "@/interfaces/img-interface"
-import { useQuery } from "@tanstack/react-query"
+import { useInfiniteQuery } from "@tanstack/react-query"
 
-const useFetchImgs = ()=>{
-    const imgResult = useQuery<unsplashImage[]>({
-    queryKey:['imgs'],
-    queryFn: fetchImages
-})
-  return imgResult
-}
+const useFetchImgs = () => {
+    return useInfiniteQuery<unsplashImage[], Error>({
+        queryKey: ['imgs'],
+        queryFn: ({pageParam}) => fetchImages(pageParam as number),
+        initialPageParam:1,
+        getNextPageParam: (lastPage, allPages) => {
+            // Stop fetching if last page returned fewer than 20 items
+            if (lastPage.length < 20) return undefined;
+            return allPages.length + 1; // next page number
+        },
+    });
+};
+
 
 export default useFetchImgs
+
+

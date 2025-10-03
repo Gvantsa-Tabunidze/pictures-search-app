@@ -1,5 +1,5 @@
 export interface unsplashImage{
-  id?:string,
+  id:string,
   title?:Description
   user?:User,
   urls: Urls,
@@ -16,7 +16,7 @@ bio?:string
 interface Urls{
 full?:string,
 small:string
-regular?:string,
+regular:string,
 thumb?:string
 }
 
