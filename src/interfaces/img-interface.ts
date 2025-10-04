@@ -5,7 +5,8 @@ export interface unsplashImage{
   urls: Urls,
   likes:number,
   width?:number,
-  height?:number
+  height?:number,
+  category?:TopicSubmissions
 }
 
 interface User{
@@ -23,3 +24,14 @@ thumb?:string
 interface Description{
 alt_description:string
 }
+
+interface TopicSubmissions {
+  [topicName: string]: TopicSubmission
+}
+
+interface TopicSubmission{
+status: 'approved' | 'rejected'
+approved_on?: string
+}
+
+

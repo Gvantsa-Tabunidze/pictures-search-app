@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import Card from './Card'
 import ImgDiv from '../popUp/ImgDiv'
 import useFetchSingleImg from '@/hooks/quries/useFetchSingleImg'
+import SearchAndChips from '../filter/SearchAndChips'
 
 
 
@@ -12,7 +13,7 @@ import useFetchSingleImg from '@/hooks/quries/useFetchSingleImg'
 export default function List() {
   const {data,isLoading, error, isFetchingNextPage, hasNextPage, fetchNextPage } = useFetchImgs()
   const [selectedId, setSelectedID] = useState<string| null>(null)
-  const {data:singleImg, isLoading:singleImgLoading, } = useFetchSingleImg(selectedId!)
+  const {data:singleImg } = useFetchSingleImg(selectedId!)
 
   const openTheDiv = useCallback((id:string)=>{
     setSelectedID(id)
@@ -45,20 +46,19 @@ export default function List() {
   if(singleImg) {
     console.log(singleImg)
   }
-  if(error) return <div>No data to fetch</div>
+  if(error) return <div>Oops something's gone wrong</div>
 
 
 
 
   return (
-    <div className='position-relative'>
-     {selectedId && singleImg ? <ImgDiv data={singleImg} onClose={onCloseDiv}/> : null}
-     {data?.pages.map((page, i)=>
-       <div key={i}>
-        {page.map((img)=> <Card key={img.id} data={img} onClick={()=>openTheDiv(img.id)}/>)}
-       </div>
-     )}
-     <h2>{isFetchingNextPage ? 'Loading more pictures' : 'No more pictures to load'}</h2>
+    <div>
+    {/* List of images */}
+      <div className='relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
+      {selectedId && singleImg ? <ImgDiv data={singleImg} onClose={onCloseDiv}/> : null}
+      {data?.pages.flatMap((page,pageIndex)=>page.map((img)=> <Card key={`${pageIndex} - ${img.id}` } data={img} onClick={()=>openTheDiv(img.id)}/>))}
+      <h2>{isFetchingNextPage ? 'Loading more pictures' : 'No more pictures to load'}</h2>
+      </div>
     </div>
   ) 
 }

@@ -39,7 +39,6 @@ function ImgDiv({onClose, data}:ImgDivProps) {
              <div>
                 <div>
                 <button>Add Favorites</button>
-                <button>Add</button>
                 </div>
                 <button>Download</button>
              </div>
