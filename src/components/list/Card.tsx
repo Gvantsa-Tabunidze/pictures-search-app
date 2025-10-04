@@ -20,11 +20,11 @@ export default function Card({data,onClick}:ImageCardProps) {
   return (
     <div className='relative w-72 bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer'>
       <div onClick={()=>onClick(data.id)}>
-        <Image src={data.urls.small} alt={`picture of ${data.title}`} width={data.width} height={data.height}placeholder='blur' blurDataURL={data.urls.thumb} />
+        <Image src={data.urls.small} alt={`picture of ${data.alt_description}`} width={data.width} height={data.height}placeholder='blur' blurDataURL={data.urls.thumb} />
         <div className='absolute top-2 right-2 flex space-x-2'>
             <button className='p-2 bg-white bg-opacity-70 rounded-full hover:bg-red-500 hover:text-white transition'><FontAwesomeIcon icon={faHeart} /></button>
         </div>
-        <h2>{data.title?.alt_description}</h2>
+        <h2>{data.alt_description}</h2>
         <p>{data.user?.name}</p>
         <p>{`${data.likes} likes`}</p>
         <button><FontAwesomeIcon icon={faDownload}/> Donwload</button>

@@ -1,5 +1,5 @@
 
-import QueryWrapper from "@/components/Wrapper/queryClient";
+import QueryWrapper from "@/components/QueryWrapper/queryClient";
 
 
 

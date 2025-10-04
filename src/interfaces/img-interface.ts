@@ -1,12 +1,12 @@
 export interface unsplashImage{
   id:string,
-  title?:Description
+  alt_description?:string
   user?:User,
   urls: Urls,
   likes:number,
   width?:number,
   height?:number,
-  category?:TopicSubmissions
+  topic_submissions?:TopicSubmissions
 }
 
 interface User{
@@ -21,9 +21,7 @@ regular:string,
 thumb?:string
 }
 
-interface Description{
-alt_description:string
-}
+
 
 interface TopicSubmissions {
   [topicName: string]: TopicSubmission

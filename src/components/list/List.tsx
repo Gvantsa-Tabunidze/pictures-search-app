@@ -6,12 +6,21 @@ import Card from './Card'
 import ImgDiv from '../popUp/ImgDiv'
 import useFetchSingleImg from '@/hooks/quries/useFetchSingleImg'
 import SearchAndChips from '../filter/SearchAndChips'
+import { unsplashImage } from '@/interfaces/img-interface'
+import { InfiniteData } from '@tanstack/react-query'
 
 
+interface ListProps {
+data: InfiniteData<unsplashImage[]> | undefined, 
+isLoading:boolean,
+isFetchingNextPage:boolean,
+hasNextPage:boolean,
+fetchNextPage:()=>void
+error:unknown
+}
 
-
-export default function List() {
-  const {data,isLoading, error, isFetchingNextPage, hasNextPage, fetchNextPage } = useFetchImgs()
+export default function List({data, fetchNextPage,hasNextPage,isFetchingNextPage,isLoading, error}:ListProps) {
+  
   const [selectedId, setSelectedID] = useState<string| null>(null)
   const {data:singleImg } = useFetchSingleImg(selectedId!)
 

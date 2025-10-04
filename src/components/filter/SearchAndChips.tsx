@@ -12,7 +12,7 @@ interface SearchAndChipsProps{
 
 function SearchAndChips({onSearchChange,searchValue, selectedChip,toggle}:SearchAndChipsProps) {
 
-const chips = ['Featured','Nature', '3D Renders','Animals', 'Architecture-interior', 'People', 'Experimental', 'Film', 'Fashion-beauty']
+const chips = ['Nature', '3D Renders','Animals', 'Architecture-interior', 'People', 'Experimental', 'Film', 'Fashion-beauty']
 
   return (
 // Search
