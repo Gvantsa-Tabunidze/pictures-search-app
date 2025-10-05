@@ -1,11 +1,9 @@
 'use client'
 
-import useFetchImgs from '@/hooks/quries/useFetchImgs'
 import React, { useCallback, useEffect, useState } from 'react'
 import Card from './Card'
 import ImgDiv from '../popUp/ImgDiv'
 import useFetchSingleImg from '@/hooks/quries/useFetchSingleImg'
-import SearchAndChips from '../filter/SearchAndChips'
 import { unsplashImage } from '@/interfaces/img-interface'
 import { InfiniteData } from '@tanstack/react-query'
 
@@ -64,7 +62,7 @@ export default function List({data, fetchNextPage,hasNextPage,isFetchingNextPage
     <div>
     {/* List of images */}
       <div className='relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
-      {selectedId && singleImg ? <ImgDiv data={singleImg} onClose={onCloseDiv}/> : null}
+      {selectedId && singleImg ? <ImgDiv key={selectedId} data={singleImg} onClose={onCloseDiv} /> : null}
       {data?.pages.flatMap((page,pageIndex)=>page.map((img)=> <Card key={`${pageIndex} - ${img.id}` } data={img} onClick={()=>openTheDiv(img.id)}/>))}
       <h2>{isFetchingNextPage ? 'Loading more pictures' : 'No more pictures to load'}</h2>
       </div>

@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 
 const useFetchSingleImg = (id:string) => {
     const singleResult = useQuery<unsplashImage>({
-        queryKey:['oneimg'],
+        queryKey:['oneimg', id],
         queryFn:()=>fetchSingleImg(id),
         enabled:!!id
     })
