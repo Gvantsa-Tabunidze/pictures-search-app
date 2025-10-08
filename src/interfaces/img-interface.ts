@@ -1,6 +1,6 @@
 export interface unsplashImage{
   id:string,
-  alt_description?:string
+  alt_description?:string | undefined
   user?:User,
   urls: Urls,
   likes:number,

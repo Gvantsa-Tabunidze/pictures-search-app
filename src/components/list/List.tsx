@@ -4,12 +4,12 @@ import React, { useCallback, useEffect, useState } from 'react'
 import Card from './Card'
 import ImgDiv from '../popUp/ImgDiv'
 import useFetchSingleImg from '@/hooks/quries/useFetchSingleImg'
-import { unsplashImage } from '@/interfaces/img-interface'
 import { InfiniteData } from '@tanstack/react-query'
+import { ParsedImage } from '@/api/parser/imgParsers'
 
 
 interface ListProps {
-data: InfiniteData<unsplashImage[]> | undefined, 
+data: InfiniteData<ParsedImage[]> | undefined, 
 isLoading:boolean,
 isFetchingNextPage:boolean,
 hasNextPage:boolean,

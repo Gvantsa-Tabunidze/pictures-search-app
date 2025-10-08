@@ -1,11 +1,12 @@
 'use client'
 
 import fetchImages from "@/api/fetchImages"
+import { ParsedImage } from "@/api/parser/imgParsers";
 import { unsplashImage } from "@/interfaces/img-interface"
 import { useInfiniteQuery } from "@tanstack/react-query"
 
 const useFetchImgs = () => {
-    return useInfiniteQuery<unsplashImage[], Error>({
+    return useInfiniteQuery<ParsedImage[], Error>({
         queryKey: ['imgs'],
         queryFn: ({pageParam}) => fetchImages(pageParam as number),
         initialPageParam:1,
