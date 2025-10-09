@@ -20,7 +20,6 @@ export default async function Home() {
      <h1 className='text-4xl font-bold mb-4'>Discover minimalism photography</h1>
      <h3 className='text-lg mb-6'>Search across millions of curated images. </h3>
      <QueryWrapper dehydratedState={dehydratedState} />
-     
     </div>
   );
 }

@@ -1,9 +1,10 @@
 'use client'
 import { ParsedImage } from '@/api/parser/imgParsers'
-import useFetchSingleImg from '@/hooks/quries/useFetchSingleImg'
-import { unsplashImage } from '@/interfaces/img-interface'
+import { faDownload, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import React, { useState, useEffect, useRef } from 'react'
+import Loader from '../Loader/Loader'
 
 
 
@@ -13,46 +14,63 @@ interface ImgDivProps {
     onClose: () => void,
    
 }
-function ImgDiv({onClose, data}:ImgDivProps) {
+function ImgDiv({onClose, data}:ImgDivProps) {  
+const divRef = useRef<HTMLDivElement>(null)
+const [imgLoader, setImgLoader] = useState(true)
 
-    
-    const divRef = useRef<HTMLDivElement>(null)
-    
 
-    //Click outside event habdling
-    useEffect(()=>{
-        const handleClickOutside  = (e:MouseEvent)=>{
-            if(divRef.current && !divRef.current.contains(e.target as Node)) 
-            onClose()
-        }
-        document.body.addEventListener('click', handleClickOutside)
+//Click outside event habdling
+useEffect(()=>{
+    const handleClickOutside  = (e:MouseEvent)=>{
+        if(divRef.current && !divRef.current.contains(e.target as Node)) 
+        onClose()
+    }
+    document.body.addEventListener('click', handleClickOutside)
 
-        //clear 
-        return () => {
-            document.body.removeEventListener('click', handleClickOutside)
-        }
-    },[onClose])
+    //clear 
+    return () => {
+        document.body.removeEventListener('click', handleClickOutside)
+    }
+},[onClose])
 
 
    
 
-  return (
-     
+ return (
     <div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] flex justify-center items-center z-40">
-        <div ref={divRef} className='fixed inset-0 bg-white  flex flex-col items-center  z-50 max-w-[1200px] mx-auto p-12 rounded-2xl shadow'>
-           
-        <div className="flex justify-between w-full">
-             <h2>{data?.alt}</h2>
-             <div className='flex gap-8'>
-                <button>Add Favorites</button>
-                <button>Download</button>
-             </div>
+      <div
+        ref={divRef}
+        className="bg-white w-full max-w-[1200px] h-[80vh] p-12 flex flex-col rounded-2xl shadow-lg z-50 box-border"
+        >
+        {/* Image loader */}
+        {imgLoader && (
+            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+            <Loader />
+            </div>
+        )}
+
+        <div className="flex justify-between w-full mb-4 flex-none">
+            <h2 className="text-lg font-bold">{data?.alt}</h2>
+            <div className="flex gap-2">
+            <button className="px-3 py-2 border border-purple-950 rounded-full hover:bg-purple-300 text-purple-950 transition">
+                <FontAwesomeIcon icon={faHeart} />
+            </button>
+            <button className="px-3 py-2 border border-purple-950 rounded-full hover:bg-purple-300 text-purple-950 transition">
+                <FontAwesomeIcon icon={faDownload} />
+            </button>
+            </div>
         </div>
-        <Image src={data.imgSrc ?? '/image-not-found'} alt={`picture of ${data?.alt}`} width={data?.width} height={data?.height}
-        placeholder='blur'  blurDataURL={data?.thumb ?? undefined}
-        style={{width: '100%',height: 'auto', objectFit: 'contain'}}  />
-     
+
+       
+        <div className="relative w-full flex-1 flex  justify-center overflow-hidden">
+            <Image  src={data.imgSrc ?? '/image-not-found'}
+                alt={`picture of ${data?.alt}`}
+                fill 
+                style={{ objectFit: 'contain' }} 
+                sizes="100vw"  
+                onLoadingComplete={()=>setImgLoader(false)}/>
         </div>
+      </div>
     </div>
   )
 }

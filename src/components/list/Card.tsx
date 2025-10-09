@@ -48,7 +48,7 @@ const handleHover = (e:React.MouseEvent<HTMLDivElement>)=>{
               </div>
              
               <div className='flex flex-col justify-end items-start relative w-full h-full p-4 text-white'>
-                <h3 className=' text-lg font-bold'>{data.author}</h3>
+                <h3 className='text-lg font-bold'>{data.author}</h3>
                 <small className='text-left'>{data.alt}</small>
               </div>
          </div>
