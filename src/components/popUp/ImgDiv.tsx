@@ -3,8 +3,8 @@ import { ParsedImage } from '@/api/parser/imgParsers'
 import { faDownload, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
-import React, { useState, useEffect, useRef } from 'react'
 import Loader from '../Loader/Loader'
+import useImgHook from '@/hooks/imgHook/useImgHook'
 
 
 
@@ -15,23 +15,7 @@ interface ImgDivProps {
    
 }
 function ImgDiv({onClose, data}:ImgDivProps) {  
-const divRef = useRef<HTMLDivElement>(null)
-const [imgLoader, setImgLoader] = useState(true)
-
-
-//Click outside event habdling
-useEffect(()=>{
-    const handleClickOutside  = (e:MouseEvent)=>{
-        if(divRef.current && !divRef.current.contains(e.target as Node)) 
-        onClose()
-    }
-    document.body.addEventListener('click', handleClickOutside)
-
-    //clear 
-    return () => {
-        document.body.removeEventListener('click', handleClickOutside)
-    }
-},[onClose])
+const {divRef,imgLoader,setImgLoader} = useImgHook(onClose)
 
 
    
@@ -42,7 +26,7 @@ useEffect(()=>{
         ref={divRef}
         className="bg-white w-full max-w-[1200px] h-[80vh] p-12 flex flex-col rounded-2xl shadow-lg z-50 box-border"
         >
-        {/* Image loader */}
+        
         {imgLoader && (
             <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
             <Loader />
@@ -68,7 +52,7 @@ useEffect(()=>{
                 fill 
                 style={{ objectFit: 'contain' }} 
                 sizes="100vw"  
-                onLoadingComplete={()=>setImgLoader(false)}/>
+                onLoad={()=>setImgLoader(false)}/>
         </div>
       </div>
     </div>
