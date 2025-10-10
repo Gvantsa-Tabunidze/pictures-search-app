@@ -1,6 +1,9 @@
 'use client'
 import React, { useState } from 'react'
 import Chip from './Chip'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
 
 
 interface SearchAndChipsProps{
@@ -17,11 +20,13 @@ const chips = ['Nature', '3D Renders','Animals', 'Architecture-interior', 'Peopl
   return (
 // Search
   <div className='flex flex-col'>
+    
          <input type='text' name='search' className='w-full px-4 py-2 border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400
           focus:border-purple-400 transitionplaceholder-gray-400 rounded-full' placeholder='Search photos and illustrations'
         onChange={(e)=>onSearchChange(e.target.value)}
         value={searchValue}
           />
+    
   
   {/* Chips */}
    <div className='flex my-8 gap-2'>

@@ -6,6 +6,7 @@ import React, { useRef, useState } from 'react'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import { ParsedImage } from '@/api/parser/imgParsers'
+import useFavorites from '@/store/favoritesStore'
 
 
 
@@ -16,6 +17,7 @@ interface ImageCardProps{
 
 export default function Card({data,onClick}:ImageCardProps) {
   const [isHovered, setIsHovered] = useState(false)
+  const toggleFavorites = useFavorites((state)=>state.toggleFav)
  
 const handleHover = (e:React.MouseEvent<HTMLDivElement>)=>{
   if(e.type=== 'mouseenter'){
@@ -41,7 +43,12 @@ const handleHover = (e:React.MouseEvent<HTMLDivElement>)=>{
               <div className='flex px-3 py-2 w-full justify-between items-center'>
                 <p className='text-white'>{`${data.likes} Likes`}</p>
                 <div className='flex gap-2'>
-                  <button className='px-3 py-2 bg-white bg-opacity-70 rounded-full hover:bg-purple-300 text-purple-950 transition'><FontAwesomeIcon icon={faHeart} /></button>
+                  <button className='px-3 py-2 bg-white bg-opacity-70 rounded-full hover:bg-purple-300 text-purple-950 transition'
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    toggleFavorites(data)
+  }}
+                  ><FontAwesomeIcon icon={faHeart} /></button>
                   <button className='px-3 py-2 bg-white bg-opacity-70 rounded-full hover:bg-purple-300 text-purple-950 transition'><FontAwesomeIcon icon={faDownload}/></button>
                 </div>
                 
