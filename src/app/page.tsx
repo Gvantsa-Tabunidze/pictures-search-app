@@ -16,7 +16,7 @@ export default async function Home() {
   const dehydratedState = dehydrate(queryClient)
 
   return (
-    <div className='min-h-screen flex flex-col items-center justify-center text-center px-4 py-12'>
+    <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-12 lg:px-24 py-8 sm:py-12">
       <h1 className='text-4xl font-bold mb-4'>Discover minimalism photography</h1>
       <h3 className='text-lg mb-6'>Search across millions of curated images. </h3>
       <QueryWrapper dehydratedState={dehydratedState} />

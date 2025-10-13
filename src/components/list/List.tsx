@@ -41,9 +41,13 @@ export default function List({data,error,fetchNextPage,hasNextPage,isFetchingNex
 
   return (
     <div>
-      <div className='relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
+      <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
         {hookData.selectedId && hookData.singleImg ? <ImgDiv key={hookData.selectedId} data={hookData.singleImg} onClose={hookData.onCloseDiv} /> : null}
-        {data?.pages.flatMap((page,pageIndex)=>page.map((img)=> <Card key={`${pageIndex} - ${img.id}` } data={img} onClick={()=>hookData.openTheDiv(img.id)}/>))}
+        {data?.pages.flatMap((page,pageIndex)=>page.map((img)=>
+          <div className="mb-4 break-inside-avoid">
+            <Card key={`${pageIndex} - ${img.id}` } data={img} onClick={()=>hookData.openTheDiv(img.id)}/>
+          </div>
+          ))}
       </div>
       <h2>{isFetchingNextPage ? 'Loading more pictures' : 'No more pictures to load'}</h2>
     </div>

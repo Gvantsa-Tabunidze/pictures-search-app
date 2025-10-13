@@ -31,12 +31,10 @@ const handleHover = (e:React.MouseEvent<HTMLDivElement>)=>{
 
 
   return (
-    <div className='relative w-72  bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer'
-    onMouseEnter={handleHover} onMouseLeave={handleHover}
-  
-    >
-      <div onClick={()=>onClick(data.id)} className='relative w-full' >
-        <Image src={data.imgSrc} alt={`picture of ${data.alt}`} width={data.width} height={data.height} placeholder='blur' blurDataURL={data.thumb} 
+   
+      <div onClick={()=>onClick(data.id)}  onMouseEnter={handleHover} onMouseLeave={handleHover}
+       className="relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer" >
+        <Image src={data.imgSrc} alt={`picture of ${data.alt}`} width={data.width} height={data.height} 
         className='w-full h-auto rounded-t-xl'  />
         {isHovered &&
             <div className="absolute inset-0 bg-black/40 flex flex-col justify-between p-4 transition-opacity">
@@ -47,7 +45,7 @@ const handleHover = (e:React.MouseEvent<HTMLDivElement>)=>{
                   onClick={(e) => {
                     e.stopPropagation()
                     toggleFavorites(data)
-  }}
+                  }}
                   ><FontAwesomeIcon icon={faHeart} /></button>
                   <button className='px-3 py-2 bg-white bg-opacity-70 rounded-full hover:bg-purple-300 text-purple-950 transition'><FontAwesomeIcon icon={faDownload}/></button>
                 </div>
@@ -60,9 +58,6 @@ const handleHover = (e:React.MouseEvent<HTMLDivElement>)=>{
               </div>
          </div>
         }
-       
-        
       </div>
-    </div>
   )
 }

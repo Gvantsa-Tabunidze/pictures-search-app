@@ -29,7 +29,7 @@ const chips = ['Nature', '3D Renders','Animals', 'Architecture-interior', 'Peopl
     
   
   {/* Chips */}
-   <div className='flex my-8 gap-2'>
+   <div className='flex my-8 gap-2 w-full justify-center'>
       {chips.map((el, index)=> 
       <Chip key={index} label={el}  selected={selectedChip === el} onToggle={toggle}/>
       )}

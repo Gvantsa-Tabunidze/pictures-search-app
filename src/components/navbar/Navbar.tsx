@@ -18,7 +18,7 @@ function Navbar() {
   if (!hydrated) return null
 
   return (
-    <nav className="flex justify-between items-center px-8 py-4 shadow-md bg-white">
+    <nav className="flex justify-between items-center px-24 py-4 shadow-md bg-white">
       <h1 className="text-2xl font-bold">Awesome Gallery</h1>
       {userToken ? (
         <button onClick={logout} className="px-5 py-2 bg-purple-600 text-white rounded">
