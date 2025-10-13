@@ -46,8 +46,10 @@ const handleHover = (e:React.MouseEvent<HTMLDivElement>)=>{
                     e.stopPropagation()
                     toggleFavorites(data)
                   }}
-                  ><FontAwesomeIcon icon={faHeart} /></button>
-                  <button className='px-3 py-2 bg-white bg-opacity-70 rounded-full hover:bg-purple-300 text-purple-950 transition'><FontAwesomeIcon icon={faDownload}/></button>
+                  >
+                    <FontAwesomeIcon icon={faHeart} />
+                  </button>
+                
                 </div>
                 
               </div>

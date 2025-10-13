@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation"
 import axios from "axios"
 import useAuthStore from "@/store/authStore"
 import toast from "react-hot-toast"
+import Loader from "@/components/Loader/Loader"
 
 
 
@@ -32,5 +33,5 @@ export default function AuthCallback() {
     getAccessToken()
   }, [router, setToken])
 
-  return <div>Logging in...</div>
+  return <div className="flex flex-col items-center justify-center min-h-screen space-y-2"><Loader/>Logging in...</div>
 }

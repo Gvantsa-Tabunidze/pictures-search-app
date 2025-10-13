@@ -9,7 +9,12 @@ author: string,
 likes: number
 width?: number
 height?: number
-topics?: TopicSubmissions
+topics?: TopicSubmissions,
+userName: string |undefined,
+userBio:string | undefined,
+available:boolean | undefined,
+igUsername:string | undefined,
+location:string | undefined
 }
 
 
@@ -33,7 +38,12 @@ export function ParseImage(rawData:unsplashImage):ParsedImage {
     likes:rawData.likes,
     width:rawData.width,
     height:rawData.height,
-    topics:rawData.topic_submissions
+    topics:rawData.topic_submissions,
+    userName: rawData.user?.name,
+    userBio:rawData.user?.bio,
+    available:rawData.user?.for_hire,
+    igUsername:rawData.user?.instagram_usernam,
+    location:rawData.user?.location
   }
 }
 

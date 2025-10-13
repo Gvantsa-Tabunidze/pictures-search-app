@@ -8,7 +8,7 @@ interface AuthStoreInterface{
     logout:()=>void,
 }
 
-const useAuthStore = create<AuthStoreInterface>((set, get)=>({
+const useAuthStore = create<AuthStoreInterface>((set)=>({
     token: null,
     setToken:(t)=>{
         if(t) localStorage.setItem('unsplash_token', t)

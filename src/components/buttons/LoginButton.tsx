@@ -14,7 +14,7 @@ export const LoginButton = () => {
   return (
     <button
       onClick={handleLogin}
-      className="px-5 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-400 transition"
+      className="px-5 py-2 bg-purple-950 text-white rounded-lg hover:bg-purple-400 transition"
     >
       Login with Unsplash
     </button>

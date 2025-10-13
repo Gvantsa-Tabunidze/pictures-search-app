@@ -6,12 +6,15 @@ export interface unsplashImage{
   likes:number,
   width?:number,
   height?:number,
-  topic_submissions?:TopicSubmissions
+  topic_submissions?:TopicSubmissions,
 }
 
 interface User{
 name:string,
-bio?:string
+bio?:string,
+for_hire?:boolean,
+instagram_usernam?:string,
+location:string
 }
 
 interface Urls{
