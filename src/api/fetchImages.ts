@@ -18,7 +18,6 @@ export default async function fetchImages(page:number, perPage=20) :Promise<Pars
     },
     
 })
-console.log(picResponse)
     return ParseImagesList(picResponse.data)
 }
 

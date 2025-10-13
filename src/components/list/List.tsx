@@ -31,12 +31,6 @@ export default function List({data,error,fetchNextPage,hasNextPage,isFetchingNex
   })
 
   if(isLoading) return <div>Loading . . .</div>
-  if(data){
-    console.log(data)
-  } 
-  if(hookData.singleImg) {
-    console.log(hookData.singleImg)
-  }
   if(error) return <div>Oops something's gone wrong</div>
 
 

@@ -21,10 +21,10 @@ const {divRef,imgLoader,setImgLoader} = useImgHook(onClose)
    
 
  return (
-    <div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] flex justify-center  z-40">
+    <div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] flex justify-center items-start z-40 overflow-y-auto">
       <div
         ref={divRef}
-        className="bg-white w-full max-w-[1200px] min-h-[80vh] p-12 flex flex-col rounded-2xl shadow-lg z-50 box-border overflow-y-auto"
+        className="bg-white w-full max-w-[1200px]  p-12 flex flex-col rounded-2xl shadow-lg z-50 box-border"
         >
         
         {imgLoader && (

@@ -17,16 +17,25 @@ function useFilterListHook() {
     //Initialize state form URL
     const [search, setSearch] = useState(searchParams.get('search') || ''  )
     const [activeChip, setActiveChip] = useState<string| null>(searchParams.get('category') || null)
+
     // Debounced search
     const debouncedSearch = useDebounce(search, 500);
 
     // Update URL when filters change
     useEffect(()=>{
+    if (!pathname) return;
     const params = new URLSearchParams()
-    if(search) params.set('search', search)
+    if(debouncedSearch) params.set('search', debouncedSearch)
     if(activeChip) params.set('category', activeChip.toString())
-    router.replace( `${pathname}${params.toString() ? `?${params.toString()}` : ''}`)
-    }, [search, activeChip, router, pathname])
+   
+    const newUrl = `${pathname}${params.toString() ? `?${params.toString()}` : ''}`
+    const currentUrl = `${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ''}`
+
+    // Prevent unnecessary updates (avoids RSC fetches)
+    if (newUrl !== currentUrl) {
+      router.replace(newUrl, { scroll: false })
+    }
+    }, [debouncedSearch, activeChip, router, pathname, searchParams])
 
 
 
