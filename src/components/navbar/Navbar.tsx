@@ -9,13 +9,13 @@ function Navbar() {
   const userToken = useAuthStore((state)=>state.token)
   const logout = useAuthStore((state) => state.logout)
 
-//  useEffect(() => {
-//     const token = localStorage.getItem('unsplash_token')
-//     if (token) setToken(token)
-//     setHydrated(true) // ensures UI doesn't flash wrong state
-//   }, [setToken])
+ useEffect(() => {
+    const token = localStorage.getItem('unsplash_token')
+    if (token) setToken(token)
+    setHydrated(true) // ensures UI doesn't flash wrong state
+  }, [setToken])
 
-//   if (!hydrated) return null
+  if (!hydrated) return null
 
   return (
     <nav className="flex justify-between items-center px-24 py-4 shadow-md bg-white">

@@ -14,6 +14,7 @@ export async function POST(req: NextRequest) {
       code,
       grant_type: "authorization_code",
     })
+    console.log(res.data)
     return NextResponse.json(res.data)
   } catch (err) {
     return NextResponse.json({ error: "Token exchange failed" }, { status: 500 })
