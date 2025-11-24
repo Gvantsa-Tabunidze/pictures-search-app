@@ -1,4 +1,3 @@
-import { unsplashImage } from "@/interfaces/img-interface";
 import axios from "axios";
 import { ParsedImage, ParseImage } from "./parser/imgParsers";
 

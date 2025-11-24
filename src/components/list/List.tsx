@@ -1,13 +1,11 @@
 'use client'
 
-import React, { useCallback, useEffect, useState } from 'react'
 import Card from './Card'
 import ImgDiv from '../popUp/ImgDiv'
-import useFetchSingleImg from '@/hooks/quries/useFetchSingleImg'
 import { InfiniteData, useInfiniteQuery } from '@tanstack/react-query'
 import { ParsedImage } from '@/api/parser/imgParsers'
 import useInfiniteScrollHook from '@/hooks/infiniteScrollHook/useInfiniteScrollHook'
-import Loader from '../Loader/Loader'
+
 
 
 interface ListProps {
@@ -31,7 +29,7 @@ export default function List({data,error,fetchNextPage,hasNextPage,isFetchingNex
   })
 
   if(isLoading) return <div>Loading . . .</div>
-  if(error) return <div>Oops something's gone wrong</div>
+  if (error) return <div>{`Oops something's gone wrong`}</div>
 
 
   return (

@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     console.log(res.data)
     return NextResponse.json(res.data)
   } catch (err) {
-    return NextResponse.json({ error: "Token exchange failed" }, { status: 500 })
+    return NextResponse.json({ err: "Token exchange failed" }, { status: 500 })
   }
 }
 

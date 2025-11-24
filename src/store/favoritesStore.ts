@@ -48,7 +48,7 @@ const useFavorites = create<FavsStore>((set, get)=>({
     const accessToken = localStorage.getItem('unsplash_token')
     if (!accessToken) return
     try {
-         const res = await axios.get('https://api.unsplash.com/me/likes', {
+        const res = await axios.get('https://api.unsplash.com/me/likes', {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       set({ favs: res.data })
